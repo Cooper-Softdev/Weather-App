@@ -27,3 +27,15 @@ The HTML, and CSS king himself, Kevin Powell - https://www.youtube.com/@KevinPow
 The API information provided by LocationIQ - https://locationiq.com/
 Trello for kanban board to keep tasks neat and orderly - https://trello.com/
 Netlify for hosting the app - https://www.netlify.com/
+
+## 1. Creating and Hosting the app on netlify with API keys.
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 2:41pm
+
+Finish time: 2:57pm
+
+Actual time needed to complete: 16 minutes
+
+## 2. 
