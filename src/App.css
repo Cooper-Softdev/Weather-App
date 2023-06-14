@@ -22,6 +22,10 @@ h1 {
   font-size: 6rem;
 }
 
+.error {
+  color: red;
+}
+
 /* Kevin Powell says not to do 100vh for mobile responsiveness, may have to edit later */
 .App {
   width: 100%;
@@ -41,27 +45,41 @@ h1 {
   z-index: -1;
 }
 
-.App input {
+input {
   text-align: center;
-  padding: 1rem;
+  padding: .8rem;
+  background: transparent;
+  border: none;
+  display: block;
+  margin: 0;
 }
 
-.App form {
-  padding: .7rem 1.5rem;
+form {
+  padding: .5rem 1.5rem;
   font-size: 1.2rem;
-  border-radius: 25px;
-  border: 1px solid rgba(255,255,255, 0.8);
-  background: rgba(255,255,255, 0.1);
-  color: #f8f8f8;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  color: gray;
+  max-width: 17rem;
+  margin: 0;
 }
 
-::placeholder {
-  color: black;
+button {
+  text-align: center;
+  padding: .5rem;
+  background: transparent;
+  border: none;
+  display: block;
+  margin: .1rem;
+  cursor: pointer;
 }
 
+button :hover {
+  transform: rotate(180deg);
+}
 .container {
   max-width: 900px;
-  height: 1000px;
+  height: 900px;
   margin: auto;
   padding: 0 1rem;
   position: relative;
@@ -73,7 +91,23 @@ h1 {
 
 .App .top {
   width: 100%;
-  margin: 1rem auto;
+  margin: 1rem 0;
+}
+
+.App .cityMap {
+  padding: .5rem 5rem;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  color: gray;
+  max-width: 16rem;
+  margin: 0;
+  position: relative;
+  right: -90%;
+  transform-origin: 0 0;
+  transform: rotate(270deg);
+  z-index: 9999;
+  transition: right 0.3s ease-in-out;
 }
 
 .App .bottom {
@@ -85,6 +119,11 @@ h1 {
   padding: 1rem;
   border-radius: 12px;
   background-color: rgba(180, 180, 180, 0.5);
+}
+
+.latlong {
+  font-style: italic;
+  font-weight: 300;
 }
 
 .bold {
