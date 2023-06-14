@@ -13,14 +13,19 @@ What exactly does this mean? How would someone else copy this and get it running
 
 ## Architecture
 
-App is HTML, CSS, JS and React to import API information from LocationIQ weather API
++ HTML, CSS
++ JavaScript
++ React
++ Bootstrap
++ node.js?
 
 ## Change Log
 
 2023-06-12 2:41pm - React app, github repo and netlify hosting complete.
-2023-06-12
-2023-06-12
-2023-06-12
+2023-06-13 11:23pm - Most CSS Styling done, some API implementation.
+2023-06-14
+2023-06-15
+
 ## Credit and Collaborations
 
 The HTML, and CSS king himself, Kevin Powell - https://www.youtube.com/@KevinPowell
@@ -38,4 +43,22 @@ Finish time: 2:57pm
 
 Actual time needed to complete: 16 minutes
 
-## 2. 
+## 2. Made basic CSS styled app
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 12:30pm
+
+Finish time: 11:20pm
+
+Actual time needed to complete: many hours
+
+## 3. Getting City API working and implemented into app state
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 5:40pm
+
+Finish time: 6:35pm
+
+Actual time needed to complete: 55 minutes
