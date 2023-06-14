@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card, Image, } from 'react-bootstrap';
+import CardImg from 'react-bootstrap/CardImg';
 
 function CityMap(props) {
   const [mapOpen, setMapOpen] = useState(false);
