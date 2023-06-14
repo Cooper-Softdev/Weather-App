@@ -1,13 +1,17 @@
 
 import React from 'react';
-
-function WeatherDisplay(props) {
+import './App.css';
+function CityDisplay(props) {
   return (
     <div className="App">
+      <div>{props.CityDisplay}</div>
       <div className="container">
         <div className="top">
           <div className="location">
             <h1>Location</h1>
+          </div>
+          <div className="latlong">
+            <p>65 degrees North</p>
           </div>
           <div className="temp">
             <p>Temperature</p>
@@ -29,14 +33,10 @@ function WeatherDisplay(props) {
             <p className='bold'>10mph</p>
             <p>Wind</p>
           </div>
-          <div className="latlong">
-            <p className='bold'>65 degrees North</p>
-            <p>Lat / Long</p>
-          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default WeatherDisplay;
+export default CityDisplay;

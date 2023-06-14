@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import WeatherDisplay from './WeatherDisplay';
+import CityDisplay from './CityDisplay';
 import './App.css';
 
 class App extends React.Component {
@@ -32,7 +32,7 @@ class App extends React.Component {
       this.setState({
         locationData: cityDataFromAxios.data[0],
         error: false, 
-        errorMsg: ''
+        errorMsg: '',
       })
 
     } catch (error) {
@@ -46,21 +46,24 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleGetCityInfo}>
-          <label htmlFor=""> Enter a City Name:
-            <input type="text" onInput={this.handleCityInput} />
-          </label>
-          <button type="submit">Explore!</button>
-        </form>
-
-        { 
-          this.state.error 
-          ? <p>{this.state.errorMsg}</p>
-          : <>
-              <p>{this.state.locationData.display_name}</p>
-              <WeatherDisplay />
-            </>
-        }
+        <CityDisplay>
+          <div className="search">
+            <form onSubmit={this.handleGetCityInfo}>
+                <input
+                  type="text" 
+                  onInput={this.handleCityInput} 
+                  placeholder="Enter City"
+                />
+            </form>
+          </div>
+          { this.state.error 
+            ? <p>{this.state.errorMsg}</p>
+            : <>
+                <p>{this.state.locationData.display_name}</p>
+                <CityDisplay />
+              </>
+          }
+        </CityDisplay>
       </>
     )
   }
