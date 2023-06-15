@@ -57,8 +57,8 @@ class App extends React.Component {
       })
     }
     
-      let movieURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
-      let movieDataFromAxios = await axios.get(movieURL);
+      // let movieURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+      // let movieDataFromAxios = await axios.get(movieURL);
       
   }
 
