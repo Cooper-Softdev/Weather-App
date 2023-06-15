@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import CityMap from './CityMap';
-import { getCloudDescription, roundInt, convertToCelsius } from './calcConvrt';
+import { getCloudDescription, roundInt, convertToCelsius, calculateHeatIndex, getHumidityDescription} from './calcConvrt';
 
 function AppHTML(props) {
-  const { form, locationData, error, errorMsg, handleToggleCityMap, mapURL, weatherData } = props;
+  const { form, locationData, error, errorMsg, mapURL, weatherData } = props;
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
   const wx = weatherData[0];
@@ -36,7 +36,7 @@ function AppHTML(props) {
             <p>{wx ? roundInt(wx.temp) + '°' : 'Temp'}</p>
           </div>
           <div className="cloudcover">
-            <p>{wx ? getCloudDescription(wx.cloudCover) : 'Cloud Cover'}</p>
+            <p>{wx ? (wx.description) : 'Cloud Cover'}</p>
           </div>
           {error && (
             <div className="error">
@@ -50,16 +50,16 @@ function AppHTML(props) {
         </div>
         <div className="bottom">
           <div className="feelslike">
-            <p className="bold">{wx ? roundInt(wx.humidity) + '°' : ' '} </p>
+            <p className="bold">{wx ? calculateHeatIndex(roundInt(wx.temp), wx.humidity) + '°' : 'Heat Index'} </p>
             <p>Feels Like</p>
           </div>
           <div className="humidity">
-            <p className="bold">90%</p>
+            <p className="bold">{wx ? getHumidityDescription(wx.dewpt) : 'Humidity'}</p>
             <p>Humidity</p>
           </div>
           <div className="wind">
-            <p className="bold">10mph</p>
-            <p>wind</p>
+            <p className="bold">{wx ? wx.windSpeed + ' mph' : 'Speed'}</p>
+            <p>Wind</p>
           </div>
         </div>
       </div>
