@@ -1,12 +1,26 @@
 import React from 'react';
 import './App.css';
 import CityMap from './CityMap';
+import { getCloudDescription, roundInt, convertToCelsius } from './calcConvrt';
 
 function AppHTML(props) {
-  const { form, locationData, error, errorMsg, handleToggleCityMap } = props;
+  const { form, locationData, error, errorMsg, handleToggleCityMap, mapURL, weatherData } = props;
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
+  const wx = weatherData[0];
 
+  // class Forecast {
+  // constructor(cityObj) {
+  //   this.date = cityObj.datatime;
+  //   this.description = cityObj.weather.description;
+  //   this.temp = cityObj.temp;
+  //   this.highTemp = cityObj.high_temp;
+  //   this.lowTemp = cityObj.low_temp;
+  //   this.precip = cityObj.precip;
+  //   this.cloudCover = cityObj.clouds;
+  //   this.feelsLike = cityObj.app_temp;
+  //   this.humidity = cityObj.dewpt;
+  //   this.windSpeed = cityObj.wind_spd;
   return (
     <div className="App">
       <div className="container">
@@ -16,26 +30,27 @@ function AppHTML(props) {
             <h1>{locationData ? locationData.display_name.split(',')[0] : 'Location'}</h1>
           </div>
           <div className="latlong">
-            <p>{lat && lon ? `${lat}° N, ${lon}° E` : 'Lat / Long'}</p>
+            <p>{lat && lon ? `${Number.parseFloat(lat).toFixed(3)}° N, ${Number.parseFloat(lon).toFixed(3)}° E` : 'Lat / Lon'}</p>
           </div>
           <div className="temp">
-            <p>Temperature</p>
+            <p>{wx ? roundInt(wx.temp) + '°' : 'Temp'}</p>
           </div>
           <div className="cloudcover">
-            <p>Cloud Cover</p>
+            <p>{wx ? getCloudDescription(wx.cloudCover) : 'Cloud Cover'}</p>
           </div>
           {error && (
             <div className="error">
               <p>{errorMsg}</p>
+              <p></p>
             </div>
           )}
           <div className="cityMap">
-            <button onClick={handleToggleCityMap}>City Map</button>
+          {<CityMap mapURL={mapURL} cityName={locationData ? locationData.display_name.split(',')[0] + ' Map' : 'City Map'} />}
           </div>
         </div>
         <div className="bottom">
           <div className="feelslike">
-            <p className="bold">60</p>
+            <p className="bold">{wx ? roundInt(wx.humidity) + '°' : ' '} </p>
             <p>Feels Like</p>
           </div>
           <div className="humidity">
@@ -44,11 +59,10 @@ function AppHTML(props) {
           </div>
           <div className="wind">
             <p className="bold">10mph</p>
-            <p>Wind</p>
+            <p>wind</p>
           </div>
         </div>
       </div>
-      {props.showCityMap && <CityMap mapURL={props.mapURL} />}
     </div>
   );
 }
