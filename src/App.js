@@ -35,6 +35,7 @@ class App extends React.Component {
       
       
       let weatherURL = `${process.env.REACT_APP_SERVER}/weather?lat=${cityDataFromAxios.data[0].lat}&lon=${cityDataFromAxios.data[0].lon}&searchQuery=${this.state.city}`;
+
       let weatherDataFromAxios = await axios.get(weatherURL)
       console.log(weatherDataFromAxios.data);
 
@@ -78,9 +79,8 @@ class App extends React.Component {
           handleToggleCityMap={this.handleToggleCityMap}
           mapURL={this.state.mapURL}
           weatherData={this.state.weatherData}
-        />
-
-
+          />
+      
 
       </>
     );
