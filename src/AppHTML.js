@@ -3,7 +3,7 @@ import './App.css';
 import CityMap from './CityMap';
 
 function AppHTML(props) {
-  const { form, locationData, error, errorMsg, handleToggleCityMap } = props;
+  const { form, locationData, error, errorMsg, handleToggleCityMap, mapURL, weatherData } = props;
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
 
@@ -16,7 +16,7 @@ function AppHTML(props) {
             <h1>{locationData ? locationData.display_name.split(',')[0] : 'Location'}</h1>
           </div>
           <div className="latlong">
-            <p>{lat && lon ? `${lat}° N, ${lon}° E` : 'Lat / Long'}</p>
+            <p>{lat && lon ? `${Number.parseFloat(lat).toFixed(3)}° N, ${Number.parseFloat(lon).toFixed(3)}° E` : 'Lat / Lon'}</p>
           </div>
           <div className="temp">
             <p>Temperature</p>
@@ -30,12 +30,12 @@ function AppHTML(props) {
             </div>
           )}
           <div className="cityMap">
-            <button onClick={handleToggleCityMap}>City Map</button>
+          {<CityMap mapURL={mapURL} cityName={locationData ? locationData.display_name.split(',')[0] + ' Map' : 'City Map'} />}
           </div>
         </div>
         <div className="bottom">
           <div className="feelslike">
-            <p className="bold">60</p>
+            <p className="bold">60°</p>
             <p>Feels Like</p>
           </div>
           <div className="humidity">
@@ -48,7 +48,6 @@ function AppHTML(props) {
           </div>
         </div>
       </div>
-      {props.showCityMap && <CityMap mapURL={props.mapURL} />}
     </div>
   );
 }

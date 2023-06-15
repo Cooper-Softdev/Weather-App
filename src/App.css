@@ -64,19 +64,6 @@ form {
   margin: 0;
 }
 
-button {
-  text-align: center;
-  padding: .5rem;
-  background: transparent;
-  border: none;
-  display: block;
-  margin: .1rem;
-  cursor: pointer;
-}
-
-button :hover {
-  transform: rotate(180deg);
-}
 .container {
   max-width: 900px;
   height: 900px;
@@ -109,6 +96,21 @@ button :hover {
   z-index: 9999;
   transition: right 0.3s ease-in-out;
 }
+/* 
+button {
+  text-align: center;
+  padding: .5rem;
+  background: transparent;
+  color: gray;
+  border: none;
+  display: block;
+  margin: .1rem;
+  cursor: pointer;
+}
+
+button :hover {
+  transform: rotate(180deg);
+} */
 
 .App .bottom {
   display: flex;
