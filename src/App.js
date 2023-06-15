@@ -56,7 +56,12 @@ class App extends React.Component {
         displayWeather: false,
       })
     }
+    
+      let movieURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+      let movieDataFromAxios = await axios.get(movieURL);
+      
   }
+
 
   render() {
     const form = (
