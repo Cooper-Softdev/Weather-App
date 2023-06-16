@@ -1,7 +1,12 @@
 import React from 'react';
 import './App.css';
 import CityMap from './CityMap';
-import { getCloudDescription, roundInt, convertToCelsius, calculateHeatIndex, getHumidityDescription} from './calcConvrt';
+import { //getCloudDescription, 
+          roundInt, 
+          //convertToCelsius, 
+          calculateHeatIndex, 
+          getHumidityDescription} 
+          from './calcConvrt';
 
 function AppHTML(props) {
   const { form, locationData, error, errorMsg, mapURL, weatherData } = props;
