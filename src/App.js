@@ -66,7 +66,9 @@ class App extends React.Component {
         movieErrMsg: error.message + ': ' + error.response.data,
       });
     }
-    console.log(this.state);
+    const stateCopy = { ...this.state };
+    delete stateCopy.mapURL;
+    console.log(stateCopy);
   }
   
   render() {
