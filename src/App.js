@@ -81,6 +81,7 @@ class App extends React.Component {
     );
 
     return (
+      <>
       <AppHTML
         form={form}
         locationData={this.state.locationData}
@@ -90,6 +91,7 @@ class App extends React.Component {
         weatherData={this.state.weatherData}
         movieData={this.state.movieData}
       />
+      </>
     );
   }
 }
