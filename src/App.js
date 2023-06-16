@@ -27,23 +27,64 @@ class App extends React.Component {
 
   handleGetCityInfo = async (event) => {
     event.preventDefault();
-
+  
     try {
       const url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API}&q=${this.state.city}&format=json`
       const cityDataFromAxios = await axios.get(url);
       console.log(cityDataFromAxios);
-
+  
       const weatherURL = `${process.env.REACT_APP_LIVE_SERVER}/weather?lat=${cityDataFromAxios.data[0].lat}&lon=${cityDataFromAxios.data[0].lon}&searchQuery=${this.state.city}`;
+  
+      try {
+        const weatherDataFromAxios = await axios.get(weatherURL);
+  
+        this.setState({
+          locationData: cityDataFromAxios.data[0],
+          error: false, 
+          errorMsg: '',
+          mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=13`,
+          weatherData: weatherDataFromAxios.data,
+        });
+      } catch (error) {
+        console.log(`Error accessing ${weatherURL}. Trying fallback server...`);
+        
+        const fallbackWeatherURL = `${process.env.REACT_APP_SERVER}/weather?lat=${cityDataFromAxios.data[0].lat}&lon=${cityDataFromAxios.data[0].lon}&searchQuery=${this.state.city}`;
+        
+        try {
+          const fallbackWeatherDataFromAxios = await axios.get(fallbackWeatherURL);
+  
+          this.setState({
+            locationData: cityDataFromAxios.data[0],
+            error: false, 
+            errorMsg: '',
+            mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=13`,
+            weatherData: fallbackWeatherDataFromAxios.data,
+          });
+        } catch (fallbackError) {
+          console.log(`Fallback request to ${fallbackWeatherURL} failed: ${fallbackError}`);
+          this.setState({
+            error: true,
+            errorMsg: fallbackError.message + ': ' + fallbackError.response.data,
+            displayMap: false,
+          });
+        }
+      }
+  
+      try {
+        const movieURL = `${process.env.REACT_APP_LIVE_SERVER}/movies?searchQuery=${this.state.city}`
+        const movieDataFromAxios = await axios.get(movieURL);
+  
+        this.setState({
+          movieData: movieDataFromAxios.data,
+        });
+      } catch (error) {
+        this.setState({
+          movieError: true,
+          movieErrMsg: error.message + ': ' + error.response.data,
+        });
+      }
       
-      const weatherDataFromAxios = await axios.get(weatherURL);
-
-      this.setState({
-        locationData: cityDataFromAxios.data[0],
-        error: false, 
-        errorMsg: '',
-        mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}&zoom=13`,
-        weatherData: weatherDataFromAxios.data,
-      });
+      console.log(this.state);
     } catch (error) {
       console.log(error);
       this.setState({
@@ -52,47 +93,8 @@ class App extends React.Component {
         displayMap: false,
       });
     }
-
-    try {
-      const movieURL = `${process.env.REACT_APP_LIVE_SERVER}/movies?searchQuery=${this.state.city}`
-      const movieDataFromAxios = await axios.get(movieURL);
-
-      this.setState({
-        movieData: movieDataFromAxios.data,
-      });
-    } catch (error) {
-      this.setState({
-        movieError: true,
-        movieErrMsg: error.message + ': ' + error.response.data,
-      });
-    }
-    console.log(this.state);
   }
-  
-  render() {
-    const form = (
-      <form onSubmit={this.handleGetCityInfo}>
-        <input
-          type="text" 
-          onInput={this.handleCityInput} 
-          placeholder="Enter City"
-          />
-      </form>
-    );
-
-    return (
-      <AppHTML
-        form={form}
-        locationData={this.state.locationData}
-        error={this.state.error}
-        errorMsg={this.state.errorMsg}
-        mapURL={this.state.mapURL}
-        weatherData={this.state.weatherData}
-        movieData={this.state.movieData}
-      />
-    );
-  }
-}
+}  
 
 export default App;
 
