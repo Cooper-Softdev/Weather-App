@@ -8,6 +8,7 @@ function AppHTML(props) {
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
   const wx = weatherData[0];
+  
 
   // class Forecast {
   // constructor(cityObj) {
