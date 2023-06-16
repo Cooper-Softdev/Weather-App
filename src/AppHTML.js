@@ -8,6 +8,7 @@ function AppHTML(props) {
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
   const wx = weatherData[0];
+  
 
   // class Forecast {
   // constructor(cityObj) {
@@ -54,7 +55,7 @@ function AppHTML(props) {
             <p>Feels Like</p>
           </div>
           <div className="humidity">
-            <p className="bold">{wx ? getHumidityDescription(wx.dewpt) : 'Humidity'}</p>
+            <p className="bold">{wx ? getHumidityDescription(wx.humidity) : 'Humidity'}</p>
             <p>Humidity</p>
           </div>
           <div className="wind">
@@ -68,6 +69,3 @@ function AppHTML(props) {
 }
 
 export default AppHTML;
-
-
-
