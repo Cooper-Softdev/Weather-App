@@ -8,7 +8,7 @@ function CityMap(props) {
       <Accordion.Item eventKey="0">
         <Accordion.Header>{props.cityName}</Accordion.Header>
         <Accordion.Body>
-          <img src={props.mapURL}/>
+          <img src={props.mapURL} alt="Map of the City"/>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
