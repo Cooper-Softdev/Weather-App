@@ -34,6 +34,8 @@ class App extends React.Component {
       console.log(cityDataFromAxios);
 
       const weatherURL = `${process.env.REACT_APP_LIVE_SERVER}/weather?lat=${cityDataFromAxios.data[0].lat}&lon=${cityDataFromAxios.data[0].lon}&searchQuery=${this.state.city}`;
+
+      // const weatherURL = `${process.env.REACT_APP_SERVER}/weather?lat=${cityDataFromAxios.data[0].lat}&lon=${cityDataFromAxios.data[0].lon}&searchQuery=${this.state.city}`;
       
       const weatherDataFromAxios = await axios.get(weatherURL);
 
@@ -45,25 +47,41 @@ class App extends React.Component {
         weatherData: weatherDataFromAxios.data,
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      let errorMsg = '';
+      if (error.response && error.response.data) {
+        errorMsg = error.message + ': ' + error.response.data;
+      } else {
+        errorMsg = error.message;
+      }
       this.setState({
         error: true,
-        errorMsg: error.message + ': ' + error.response.data,
+        errorMsg: errorMsg,
         displayMap: false,
       });
     }
 
     try {
       const movieURL = `${process.env.REACT_APP_LIVE_SERVER}/movies?searchQuery=${this.state.city}`
+      // const movieURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+
       const movieDataFromAxios = await axios.get(movieURL);
 
       this.setState({
         movieData: movieDataFromAxios.data,
       });
     } catch (error) {
+      // console.log(error);
+      let errorMsg = '';
+      if (error.response && error.response.data) {
+        errorMsg = error.message + ': ' + error.response.data;
+      } else {
+        errorMsg = error.message;
+      }
       this.setState({
-        movieError: true,
-        movieErrMsg: error.message + ': ' + error.response.data,
+        error: true,
+        errorMsg: errorMsg,
+        displayMap: false,
       });
     }
     const stateCopy = { ...this.state };
