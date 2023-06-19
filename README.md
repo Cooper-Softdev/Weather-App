@@ -62,3 +62,16 @@ Start time: 5:40pm
 Finish time: 6:35pm
 
 Actual time needed to complete: 55 minutes
+
+## 4. Rest of application
+
+Estimate of time needed to complete: 6 days
+
+Start time: 8:00am monday the 12th
+
+Finish time: 6:50pm sunday the 18th
+
+Actual time needed to complete: 6 days 10 hours approximately
+
+![borrowedWhiteboard](https://github.com/Cooper-Softdev/city-explorer/assets/73309872/b734112e-e879-4569-8f29-18d2867db990)
+
