@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CityMap from './CityMap';
+import MovieInfo from './MovieInfo';
 import { //getCloudDescription, 
           roundInt, 
           //convertToCelsius, 
@@ -9,7 +10,7 @@ import { //getCloudDescription,
           from './calcConvrt';
 
 function AppHTML(props) {
-  const { form, locationData, error, errorMsg, mapURL, weatherData } = props;
+  const { form, locationData, error, errorMsg, mapURL, weatherData, movieData } = props;
   const lat = locationData ? locationData.lat : '';
   const lon = locationData ? locationData.lon : '';
   const wx = weatherData[0];
@@ -55,17 +56,23 @@ function AppHTML(props) {
           </div>
         </div>
         <div className="bottom">
+          <div className="movieInfoContainer">
+            <h2>Movies set in {locationData ? locationData.display_name.split(',')[0] : ''}</h2>
+            <MovieInfo data={movieData} />
+          </div>
+        <div className="WXContainer">
           <div className="feelslike">
-            <p className="bold">{wx ? calculateHeatIndex(roundInt(wx.temp), wx.humidity) + '°' : 'Heat Index'} </p>
-            <p>Feels Like</p>
+            <p className="bold">{wx ? calculateHeatIndex(roundInt(wx.temp), wx.humidity) + '°' : 'Feels Like'} </p>
+            <p><i className="bi bi-brightness-high"></i></p>
           </div>
           <div className="humidity">
             <p className="bold">{wx ? getHumidityDescription(wx.humidity) : 'Humidity'}</p>
-            <p>Humidity</p>
+            <p><i className="bi bi-moisture"></i></p>
           </div>
           <div className="wind">
-            <p className="bold">{wx ? wx.windSpeed + ' mph' : 'Speed'}</p>
-            <p>Wind</p>
+            <p className="bold">{wx ? wx.windSpeed + ' mph' : 'Wind'}</p>
+            <p><i className="bi bi-wind"></i></p>
+          </div>
           </div>
         </div>
       </div>
